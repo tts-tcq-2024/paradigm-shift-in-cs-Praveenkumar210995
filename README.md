@@ -28,6 +28,7 @@ We will explore the charging phase of Li-ion batteries to start with.
 
 - The code here has high complexity in a single function.
 - The tests are not complete - they do not cover all the needs of a consumer
+- ustomers need early warnings to take action, in addition to the alarm that you print after the limit is breached. Introduce a 'warning' level with a tolerance of 5% of the upper-limit.
 
 ## Tasks
 
