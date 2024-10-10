@@ -4,19 +4,25 @@ namespace paradigm_shift_csharp
 {
     class Checker
     {
+        float TempMin,TempMax, SocMin, SocMax, ChargeMin, ChargeMax;
         static bool TempCheck(float temperature)
         {
-            if (temperature < 0 || temperature > 45)
+            if (temperature < TempMin || temperature > TempMax)
             {
                 Console.WriteLine("Temperature is out of range!");
                 return false;
             }
+            else if ((temperature > (TempMax - (TempMax * 0.05f))&& (temperature < TempMax)
+           {
+                Console.WriteLine("Temperature is near the maxinum range!");
+                return true;
+           }
             return true;
         }
 
         static bool ChargeCheck(float soc)
         {
-            if (soc < 20 || soc > 80)
+            if (soc < SocMin || soc > SocMax)
             {
                 Console.WriteLine("State of Charge is out of range!");
                 return false;
@@ -26,7 +32,7 @@ namespace paradigm_shift_csharp
 
         static bool ChargeRateCheck(float chargeRate)
         {
-            if (chargeRate > 0.8)
+            if (chargeRate > ChargeMin)
             {
                 Console.WriteLine("Charge Rate is out of range!");
                 return false;
@@ -55,6 +61,7 @@ namespace paradigm_shift_csharp
                 Environment.Exit(1);
             }
         }
+
         static int Main()
         {
             ExpectTrue(batteryIsOk(25, 70, 0.7f));
