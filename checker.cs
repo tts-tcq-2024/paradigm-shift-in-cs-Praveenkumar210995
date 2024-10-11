@@ -4,25 +4,39 @@ namespace paradigm_shift_csharp
 {
     class Checker
     {
-        float TempMin,TempMax, SocMin, SocMax, ChargeMin, ChargeMax;
-        static bool TempCheck(float temperature)
+
+        static void HigherTemperatureWarning(float Temperature, float TempMax)
         {
-            if (temperature < TempMin || temperature > TempMax)
+            if ((Temperature > (TempMax - (TempMax * 0.05f))) && (Temperature < TempMax))
+            {
+                Console.WriteLine("Temperature is near the maxinum range!");
+            }
+        }
+
+        static void LowerTemperatureWarning(float Temperature, float TempMin)
+        {
+            if ((Temperature > (TempMin + (TempMin * 0.05f))) && (Temperature > TempMin))
+            {
+                Console.WriteLine("Temperature is near the minimum range!");
+            }
+        }
+
+        static bool TempCheck(float Temperature)
+        {
+
+            if (Temperature < 0 || Temperature > 45)
             {
                 Console.WriteLine("Temperature is out of range!");
                 return false;
             }
-            else if ((temperature > (TempMax - (TempMax * 0.05f))&& (temperature < TempMax)
-           {
-                Console.WriteLine("Temperature is near the maxinum range!");
-                return true;
-           }
+            HigherTemperatureWarning(Temperature, 45);
+            LowerTemperatureWarning(Temperature, 0);
             return true;
         }
 
         static bool ChargeCheck(float soc)
         {
-            if (soc < SocMin || soc > SocMax)
+            if (soc < 20 || soc > 80)
             {
                 Console.WriteLine("State of Charge is out of range!");
                 return false;
@@ -32,7 +46,7 @@ namespace paradigm_shift_csharp
 
         static bool ChargeRateCheck(float chargeRate)
         {
-            if (chargeRate > ChargeMin)
+            if (chargeRate > 0.8)
             {
                 Console.WriteLine("Charge Rate is out of range!");
                 return false;
