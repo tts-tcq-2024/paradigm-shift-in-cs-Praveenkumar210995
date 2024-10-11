@@ -1,56 +1,67 @@
 using System;
 using System.Diagnostics;
+using System.Reflection.Metadata;
 namespace paradigm_shift_csharp
 {
     class Checker
     {
 
-        static void HigherTemperatureWarning(float Temperature, float TempMax)
+        static void HigherRangeWarning(float CurrentVal, float MaxiValue, String Parameter)
         {
-            if ((Temperature > (TempMax - (TempMax * 0.05f))) && (Temperature < TempMax))
+            if ((CurrentVal > (MaxiValue - (MaxiValue * 0.05f))) && (CurrentVal < MaxiValue))
             {
-                Console.WriteLine("Temperature is near the maxinum range!");
+                Console.WriteLine(Parameter + " is near the maxinum range!");
             }
         }
 
-        static void LowerTemperatureWarning(float Temperature, float TempMin)
+        static void LowerRangeWarning(float CurrentVal, float MinValue, String Parameter)
         {
-            if ((Temperature > (TempMin + (TempMin * 0.05f))) && (Temperature > TempMin))
+            if ((CurrentVal > (MinValue + (MinValue * 0.05f))) && (CurrentVal > MinValue))
             {
-                Console.WriteLine("Temperature is near the minimum range!");
+                Console.WriteLine(Parameter + " is near the minimum range!");
             }
         }
 
         static bool TempCheck(float Temperature)
         {
-
-            if (Temperature < 0 || Temperature > 45)
+            float TempMin = 0, TempMax = 45;
+            string Parameter = "Temperature";
+            if (Temperature < TempMin || Temperature > TempMax)
             {
                 Console.WriteLine("Temperature is out of range!");
                 return false;
             }
-            HigherTemperatureWarning(Temperature, 45);
-            LowerTemperatureWarning(Temperature, 0);
+            HigherRangeWarning(Temperature, TempMax, Parameter);
+            LowerRangeWarning(Temperature, TempMin, Parameter);
             return true;
         }
 
+
+
         static bool ChargeCheck(float soc)
         {
-            if (soc < 20 || soc > 80)
+            float SocMin = 20, SocMax = 80;
+            string Parameter = "Soc";
+            if (soc < SocMin || soc > SocMax)
             {
                 Console.WriteLine("State of Charge is out of range!");
                 return false;
             }
+            HigherRangeWarning(soc, SocMax, Parameter);
+            LowerRangeWarning(soc, SocMin, Parameter);
             return true;
         }
 
         static bool ChargeRateCheck(float chargeRate)
         {
-            if (chargeRate > 0.8)
+            float ChargeRateMax = 0.8f;
+            String Parameter = "Charge Rate";
+            if (chargeRate > ChargeRateMax)
             {
                 Console.WriteLine("Charge Rate is out of range!");
                 return false;
             }
+            HigherRangeWarning(chargeRate, ChargeRateMax, Parameter);
             return true;
         }
 
