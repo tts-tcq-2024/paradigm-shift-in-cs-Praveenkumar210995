@@ -28,6 +28,7 @@ We will explore the charging phase of Li-ion batteries to start with.
 
 - The code here has high complexity in a single function.
 - The tests are not complete - they do not cover all the needs of a consumer
+- Customers need early warnings to take action, in addition to the alarm that you print after the limit is breached. Introduce a 'warning' level with a tolerance of 5% of the upper-limit.
 
 ## Tasks
 
@@ -59,3 +60,6 @@ Shorten the Semantic distance
 - Functional to express relation between input and output
 - Object oriented to encapsulate state with actions
 - Apect oriented to capture repeating aspects
+## Modification
+Added two function to check the input with tolerence range and give warning message
+Made some modifications in old function to add warning feature
