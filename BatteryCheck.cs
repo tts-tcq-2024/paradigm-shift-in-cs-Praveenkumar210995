@@ -2,7 +2,7 @@ using System;
 
 namespace ParadigmShiftCSharp
 {
-    class BatteryChecks
+    class BatteryStatusCheck
     {
         static void ExpectTrue(bool expression)
         {
